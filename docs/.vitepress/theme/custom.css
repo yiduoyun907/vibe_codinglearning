@@ -1,0 +1,489 @@
+/**
+ * Vibe Coding 学习站主题
+ * 原则：技术感、克制、可读性优先。
+ */
+
+:root {
+  --vp-c-brand-1: #4f5bd5;
+  --vp-c-brand-2: #6670e8;
+  --vp-c-brand-3: #7c85f0;
+  --vp-c-brand-soft: rgba(79, 91, 213, 0.14);
+
+  --vc-accent: #e8683f;
+  --vc-accent-soft: rgba(232, 104, 63, 0.12);
+  --vc-radius: 10px;
+
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas,
+    'Liberation Mono', Menlo, monospace;
+}
+
+.dark {
+  --vp-c-brand-1: #8b95ff;
+  --vp-c-brand-2: #7c85f0;
+  --vp-c-brand-3: #6670e8;
+  --vp-c-brand-soft: rgba(139, 149, 255, 0.16);
+
+  --vc-accent: #ff8a5c;
+  --vc-accent-soft: rgba(255, 138, 92, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.vp-doc {
+  line-height: 1.8;
+}
+
+.vp-doc h2 {
+  letter-spacing: -0.01em;
+}
+
+.vp-doc h3 {
+  letter-spacing: -0.005em;
+}
+
+.vp-doc a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.vp-doc blockquote {
+  margin: 20px 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 0 8px 8px 0;
+  background: var(--vp-c-bg-soft);
+}
+
+.vp-doc table th {
+  background: var(--vp-c-bg-soft);
+}
+
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+}
+
+.vp-doc .custom-block {
+  border-radius: 8px;
+}
+
+/* 首页 */
+
+.VPHero .name {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.VPHero .text {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.VPHero .tagline {
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.VPHero .image-src {
+  max-width: 240px;
+  max-height: 240px;
+}
+
+.VPHero .image-bg {
+  background: radial-gradient(closest-side, rgba(79, 91, 213, 0.26), transparent 72%);
+}
+
+.VPButton.brand,
+.VPButton.alt {
+  border-radius: 999px;
+}
+
+.VPFeatures {
+  padding-top: 24px;
+}
+
+.VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--vc-radius);
+  background: var(--vp-c-bg-soft);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 18, 38, 0.08);
+}
+
+.dark .VPFeature:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+}
+
+.VPFeature .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.VPFeature .details {
+  line-height: 1.65;
+}
+
+/* 课程元信息 */
+
+.lesson-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 24px 0 32px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--vc-radius);
+  background: var(--vp-c-divider);
+}
+
+.lesson-meta__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--vp-c-bg-soft);
+}
+
+.lesson-meta__item--wide {
+  grid-column: 1 / -1;
+}
+
+.lesson-meta__label {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-3);
+}
+
+.lesson-meta__value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+/* 完成按钮 */
+
+.mark-complete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 40px 0 8px;
+  padding: 20px;
+  border: 1px dashed var(--vp-c-divider);
+  border-radius: var(--vc-radius);
+  background: var(--vp-c-bg-soft);
+}
+
+.mark-complete button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--vp-c-brand-1);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.mark-complete button:hover {
+  background: var(--vp-c-brand-soft);
+}
+
+.mark-complete.is-done button {
+  background: var(--vp-c-brand-1);
+  color: #ffffff;
+}
+
+.mark-complete__icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.mark-complete.is-done .mark-complete__icon::after {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 5px;
+  height: 9px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.mark-complete__hint {
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+
+/* 首页进度条 */
+
+.progress-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--vc-radius);
+  background: var(--vp-c-bg-soft);
+}
+
+.progress-summary__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.progress-summary__label {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+
+.progress-summary__value {
+  font-family: var(--vp-font-family-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.progress-summary__bar {
+  flex: 1;
+  min-width: 180px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--vp-c-default-soft);
+}
+
+.progress-summary__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vc-accent));
+  transition: width 0.4s ease;
+}
+
+.progress-summary__link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+}
+
+/* 路线页进度总览 */
+
+.progress-overview {
+  margin: 32px 0;
+}
+
+.progress-overview__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--vc-radius);
+  background: var(--vp-c-bg-soft);
+}
+
+.progress-overview__stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.progress-overview__value {
+  font-family: var(--vp-font-family-mono);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--vp-c-text-1);
+}
+
+.progress-overview__caption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+
+.progress-overview__bar {
+  flex: 1;
+  min-width: 180px;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--vp-c-default-soft);
+}
+
+.progress-overview__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vc-accent));
+  transition: width 0.4s ease;
+}
+
+.progress-overview__reset {
+  flex: none;
+  padding: 6px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--vp-c-text-3);
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.progress-overview__reset:hover {
+  border-color: var(--vc-accent);
+  color: var(--vc-accent);
+}
+
+.progress-overview__section {
+  margin-top: 28px;
+}
+
+.progress-overview__section h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--vp-c-text-2);
+}
+
+.progress-overview__section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progress-overview__section li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.progress-overview__section li a {
+  flex: 1;
+  font-size: 15px;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+
+.progress-overview__section li a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.progress-overview__section li.is-done a {
+  color: var(--vp-c-text-3);
+}
+
+.progress-overview__check {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--vp-c-divider);
+  border-radius: 50%;
+}
+
+.progress-overview__section li.is-done .progress-overview__check {
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-1);
+}
+
+.progress-overview__section li.is-done .progress-overview__check::after {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.progress-overview__meta {
+  flex: none;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+
+@media (max-width: 640px) {
+  .lesson-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-overview__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .progress-summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .progress-overview__meta {
+    display: none;
+  }
+}
+
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPLocalNav,
+  .VPDocAside,
+  .VPDocFooter,
+  .mark-complete,
+  .progress-summary,
+  .progress-overview__header {
+    display: none !important;
+  }
+
+  .VPDoc .container {
+    max-width: 100%;
+  }
+}

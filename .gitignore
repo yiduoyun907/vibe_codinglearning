@@ -1,0 +1,12 @@
+node_modules
+docs/.vitepress/dist
+docs/.vitepress/cache
+/.vitepress/
+.claude/settings.local.json
+.playwright-mcp/
+.DS_Store
+Thumbs.db
+*.local
+.env
+.env.*
+!.env.example
