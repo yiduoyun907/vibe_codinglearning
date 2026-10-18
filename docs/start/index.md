@@ -39,7 +39,7 @@ description: 第一次接触编程和 AI 工具时，先读这一页
 
 ## 第一次打开本站，按这个顺序
 
-1. 先读[什么是 Vibe Coding](/guide/core/what-is-vibe-coding)，知道自己在学什么。
+1. 先读[Vibe Coding 是什么，不是什么](/guide/core/what-is-vibe-coding)，知道自己在学什么。
 2. 遇到看不懂的词，去[附录](/appendix/)查，不要硬撑。
 3. 按[学习路线](/roadmap/)推进，一次只学一课。
 4. 每课做完动手任务、通过验收清单，再点「标记完成」。
@@ -82,4 +82,4 @@ description: 第一次接触编程和 AI 工具时，先读这一页
 
 打开[学习路线](/roadmap/)，从第 0 阶段开始。
 
-如果你已经准备好，直接进入[第一课：什么是 Vibe Coding](/guide/core/what-is-vibe-coding)。
+如果你已经准备好，直接进入[第一课：Vibe Coding 是什么，不是什么](/guide/core/what-is-vibe-coding)。

@@ -152,7 +152,7 @@ MCP 服务器本质上是在你电脑上运行的程序，或者代表你访问�
 ## 延伸阅读
 
 - [Claude Code 实操](/guide/tools/claude-code)
-- [能力边界与风险](/guide/core/capability-boundaries)
+- [能力边界：AI 何时帮你、何时拖慢你](/guide/core/capability-boundaries)
 - MCP 官方文档：<https://modelcontextprotocol.io>
 
 <MarkComplete />

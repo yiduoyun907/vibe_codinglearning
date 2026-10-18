@@ -103,12 +103,13 @@ export default defineConfig({
         ]
       },
       {
-        text: '术语附录',
+        text: '术语与依据',
         items: [
           { text: '附录总览', link: '/appendix/' },
           { text: '编程与网站基础', link: '/appendix/glossary-basics' },
           { text: 'AI 与 Vibe Coding', link: '/appendix/glossary-ai' },
-          { text: '工程、协作与安全', link: '/appendix/glossary-engineering' }
+          { text: '工程、协作与安全', link: '/appendix/glossary-engineering' },
+          { text: '内容依据', link: '/appendix/evidence' }
         ]
       }
     ],

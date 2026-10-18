@@ -19,7 +19,7 @@ export const courseSections: CourseSection[] = [
     items: [
       {
         id: 'guide/core/what-is-vibe-coding',
-        title: '什么是 Vibe Coding',
+        title: 'Vibe Coding 是什么，不是什么',
         link: '/guide/core/what-is-vibe-coding',
         level: '入门',
         minutes: 15
@@ -33,8 +33,15 @@ export const courseSections: CourseSection[] = [
       },
       {
         id: 'guide/core/capability-boundaries',
-        title: '能力边界与风险',
+        title: '能力边界：AI 何时帮你、何时拖慢你',
         link: '/guide/core/capability-boundaries',
+        level: '入门',
+        minutes: 20
+      },
+      {
+        id: 'guide/core/risk-and-responsibility',
+        title: '风险与责任',
+        link: '/guide/core/risk-and-responsibility',
         level: '入门',
         minutes: 20
       }
