@@ -2,6 +2,11 @@
 
 个人 Vibe Coding 学习与实践平台。以「路线 → 课程 → 实验 → 项目 → 复盘」为闭环，内容以 Markdown 维护，VitePress 构建为静态站点。
 
+## 线上地址
+
+- 站点：<https://yiduoyun907.github.io/vibe_codinglearning/>
+- 仓库：<https://github.com/yiduoyun907/vibe_codinglearning>
+
 ## 本地运行
 
 ```bash
