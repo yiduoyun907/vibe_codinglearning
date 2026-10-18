@@ -32,7 +32,7 @@ function tokenize(text: string): string[] {
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Vibe Coding 学习站',
-  description: '个人 Vibe Coding 学习与实践平台：路线、工具、规格、实验、项目与复盘。',
+  description: '写给零基础学习者的 Vibe Coding 学习平台：从看懂第一个名词，到独立交付第一个项目。',
   base,
   cleanUrls: true,
   lastUpdated: true,
@@ -50,18 +50,26 @@ export default defineConfig({
     logo: '/logo.svg',
     siteTitle: 'Vibe Coding',
     nav: [
+      { text: '零基础开始', link: '/start/' },
       { text: '学习路线', link: '/roadmap/' },
       { text: '课程', link: '/guide/' },
       { text: '实验', link: '/labs/' },
       { text: '项目', link: '/projects/' },
-      { text: '反模式', link: '/anti-patterns/' },
-      { text: '日志', link: '/log/' },
-      { text: '资源', link: '/resources/' }
+      { text: '术语附录', link: '/appendix/' },
+      {
+        text: '更多',
+        items: [
+          { text: '反模式库', link: '/anti-patterns/' },
+          { text: '学习日志', link: '/log/' },
+          { text: '资源索引', link: '/resources/' }
+        ]
+      }
     ],
     sidebar: [
       {
-        text: '开始',
+        text: '入门准备',
         items: [
+          { text: '零基础开始', link: '/start/' },
           { text: '学习路线', link: '/roadmap/' },
           { text: '课程总览', link: '/guide/' }
         ]
@@ -92,6 +100,15 @@ export default defineConfig({
           { text: '反模式库', link: '/anti-patterns/' },
           { text: '学习日志', link: '/log/' },
           { text: '资源索引', link: '/resources/' }
+        ]
+      },
+      {
+        text: '术语附录',
+        items: [
+          { text: '附录总览', link: '/appendix/' },
+          { text: '编程与网站基础', link: '/appendix/glossary-basics' },
+          { text: 'AI 与 Vibe Coding', link: '/appendix/glossary-ai' },
+          { text: '工程、协作与安全', link: '/appendix/glossary-engineering' }
         ]
       }
     ],

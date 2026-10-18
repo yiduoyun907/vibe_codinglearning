@@ -1,6 +1,6 @@
 ---
 title: Git 最小必要技能
-description: 审查、提交、回滚 AI 改动的能力
+description: 给项目装一台时光机，能存档、能看改动、能回滚
 ---
 
 # Git 最小必要技能
@@ -11,123 +11,193 @@ description: 审查、提交、回滚 AI 改动的能力
 
 学完这一课，你应该能：
 
-- 用 Git 在 AI 改动前后建立检查点。
-- 逐块审查 AI 的 diff，而不是只接受全部改动。
-- 在三种常见场景下正确回滚。
+- 在让 AI 改代码之前，先存一个档。
+- 看懂 AI 到底改了哪几行。
+- 在三种常见情况下，安全地退回到之前的状态。
+
+## 一句话理解
+
+**Git 是给项目装的一台时光机：每次改动前存个档，出问题就能读档。**
 
 ## 核心概念
 
-### 1. Git 是你和 AI 之间的安全网
+### 1. 先认识三个词
 
-AI 改代码的速度远快于你审查的速度。Git 的作用不是「备份」，而是给你三样东西：
-
-- **检查点**：改动前有提交，出问题能回来。
-- **可见性**：diff 告诉你到底改了什么。
-- **可解释性**：提交历史让每次改动有据可查。
-
-没有 Git，AI 协作会变成一场不可逆的赌博。
+| 词 | 用大白话说 |
+| --- | --- |
+| 仓库 | 被 Git 管理的项目文件夹 |
+| 提交 | 给当前改动拍一张有说明的快照 |
+| diff | 两个版本之间的差异，标出新增、删除和修改 |
 
 ### 2. 四个区域
 
-| 区域 | 含义 |
+| 区域 | 用大白话说 |
 | --- | --- |
-| 工作区 | 你当前看到的文件 |
-| 暂存区 | 准备提交的改动 |
-| 本地仓库 | 已经提交的历史 |
-| 远程仓库 | GitHub 等平台上的副本 |
+| 工作区 | 你现在看到的文件 |
+| 暂存区 | 你准备放进下一次存档的改动 |
+| 本地仓库 | 已经存好的历史记录 |
+| 远程仓库 | GitHub 等网站上的副本 |
 
-日常操作就是在这些区域之间移动改动。
+日常操作，就是在这些区域之间移动改动。
 
 ### 3. 最小命令集
 
 ```bash
-git init                      # 初始化仓库
-git status                    # 查看当前状态
-git diff                      # 查看未暂存的改动
-git diff --staged             # 查看已暂存的改动
-git add 文件名                 # 暂存指定文件
-git add -p                    # 逐块选择要暂存的改动
-git commit -m "说明"           # 提交
-git log --oneline --graph     # 查看历史
+git init                      # 把当前文件夹变成仓库
+git status                    # 看当前状态
+git diff                      # 看还没暂存的改动
+git diff --staged             # 看已经暂存的改动
+git add 文件名                 # 把指定文件放进暂存区
+git add -p                    # 一块一块地选择要暂存的改动
+git commit -m "说明"           # 存档，并写一句说明
+git log --oneline --graph     # 看历史记录
 ```
 
 回滚相关：
 
 ```bash
-git restore 文件名             # 丢弃工作区中未暂存的改动（不可恢复）
-git restore --staged 文件名     # 取消暂存，保留工作区改动
-git revert 提交哈希             # 生成一个反向提交（适合已推送的历史）
-git reset --hard 提交哈希       # 重置本地分支（会丢弃改动，慎用）
+git restore 文件名             # 丢弃工作区里未暂存的改动
+git restore --staged 文件名     # 取消暂存，但保留文件改动
+git revert 提交编号             # 生成一个反向提交，适合已推送的历史
+git reset --hard 提交编号       # 把本地分支重置到某个提交
 ```
 
 ::: danger 三个高风险操作
 - `git restore .`：丢弃所有未暂存改动。
 - `git reset --hard`：丢弃工作区和暂存区，移动分支指针。
-- `git clean -fd`：删除未跟踪文件。
+- `git clean -fd`：删除未跟踪的文件。
 
-执行前先 `git status`，确认没有你想保留的内容。涉及已推送的历史时，优先用 `git revert`，不要对共享分支做 `reset --hard`。
+执行前先运行 `git status`，确认没有你想保留的内容。
 :::
 
-### 4. AI 协作的提交节奏
-
-推荐流程：
+### 4. 让 AI 改代码时的正确节奏
 
 ```bash
-git status                 # 1. 确认工作区干净
-git add .                  # 2. 提交一个基线（如果你确认内容无误）
-git commit -m "chore: baseline before AI change"
+git status                 # 1. 确认当前状态
+git add .                  # 2. 把当前内容放进暂存区
+git commit -m "chore: 改动前的基线"
 
 # 3. 让 AI 修改
-git diff                   # 4. 审查改动
-# 5. 验证通过后提交
+
+git diff                   # 4. 看它到底改了什么
+# 5. 验证通过后，再提交
 git add .
 git commit -m "feat: 描述这次改动"
 ```
 
 关键点：
 
-- **改动前先提交**，哪怕只是一个临时检查点。
-- **一次提交只做一件事**，方便回滚和定位。
-- **提交信息写清楚「为什么」**，而不只是「改了什么」。
+- **改之前先存档**，哪怕只是一个临时检查点。
+- **一次提交只做一件事**，方便回滚。
+- **说明写「为什么」**，不要只写「update」。
 
 ### 5. 三种回滚场景
 
 | 场景 | 用什么 | 结果 |
 | --- | --- | --- |
-| 改了但没提交，不想要了 | `git restore 文件` | 丢弃工作区改动 |
+| 改了但没提交，不想要了 | `git restore 文件名` | 丢掉工作区改动 |
 | 已提交但没推送 | `git reset --hard 上一个提交` | 本地历史回退 |
-| 已推送，需要撤销 | `git revert 提交` | 新增反向提交，历史保留 |
+| 已推送，需要撤销 | `git revert 提交编号` | 新增一条反向提交，历史保留 |
+
+::: warning 先判断，再执行
+回滚前先问自己两个问题：**提交了吗？推送了吗？** 答案不同，用的命令完全不同。
+:::
 
 ## 动手任务
 
-在一个临时项目里完成下面三轮练习：
+在一个临时目录里完成三轮练习。
 
-1. **建立基线**：初始化仓库，创建一个文件，提交。
-2. **审查一次 AI 改动**：让 Claude 修改文件，运行 `git diff`，逐行说明每一处改动的作用。挑一处你不认可的改动用 `git restore` 撤销。
-3. **回滚一次提交**：提交一个改动，然后用 `git revert` 撤销它，查看 `git log` 确认历史。
+### 第 1 轮：建立基线
 
-进阶：用 `git add -p` 把 AI 的一次大改动拆成两个逻辑提交。
+```bash
+mkdir -p ~/vibe-lab/git-rollback
+cd ~/vibe-lab/git-rollback
+git init
+printf "version 1\n" > app.txt
+git add app.txt
+git commit -m "chore: baseline"
+```
+
+### 第 2 轮：审查一次 AI 改动
+
+1. 让 Claude 修改 `app.txt`，或者自己手动改。
+2. 运行：
+
+   ```bash
+   git status
+   git diff
+   ```
+
+3. 逐行说出每一处改动的作用。
+4. 如果有一处你不认可，运行：
+
+   ```bash
+   git restore app.txt
+   ```
+
+### 第 3 轮：回滚一次提交
+
+1. 修改并提交：
+
+   ```bash
+   printf "bad change\n" >> app.txt
+   git add app.txt
+   git commit -m "feat: bad change"
+   ```
+
+2. 查看历史：
+
+   ```bash
+   git log --oneline
+   ```
+
+3. 回到上一个提交：
+
+   ```bash
+   git reset --hard HEAD~1
+   ```
+
+4. 确认文件和历史都恢复了。
 
 ## 验收清单
 
-- [ ] 能在 AI 修改前后各创建一个提交。
-- [ ] 能读懂 `git diff` 中的新增、删除和修改行。
-- [ ] 能区分 `restore`、`reset --hard`、`revert` 的适用场景。
-- [ ] 知道哪些 Git 操作不可逆，执行前会先看 `git status`。
-- [ ] 提交信息能说明改动目的，而不是只写「update」。
+- [ ] 能在 AI 修改前后各存一次档。
+- [ ] 能读懂 `git diff` 里的新增、删除和修改行。
+- [ ] 能区分 `restore`、`reset --hard`、`revert` 的使用场景。
+- [ ] 知道哪些操作不可逆，执行前会先看 `git status`。
+- [ ] 提交说明能说清目的，而不是只写「update」。
 
-## 常见坑
+## 卡住了怎么办
 
-- **无脑 `git add .`**：可能把密钥、日志、构建产物一起提交。
-- **不提交就开始大改**：出问题时失去回滚点。
-- **对共享分支 `reset --hard`**：会破坏其他人的历史。
-- **一个提交塞进十个功能**：回滚时无法只撤掉其中一个。
-- **把 `.env` 提交进仓库**：一旦进入历史，删除文件也不等于删除密钥，需要立即轮换密钥。
+| 现象 | 先检查 |
+| --- | --- |
+| `fatal: not a git repository` | 你是不是在项目目录里；先运行 `git init` |
+| 提示没有可提交的内容 | 改动是否已保存；是否已经暂存 |
+| 不知道自己在哪个分支 | 运行 `git status` 或 `git branch` |
+| 回滚后文件没了 | 先别继续操作；用 `git reflog` 找到之前的提交 |
+| 提交里混入了不该提交的文件 | 先看 `.gitignore`，再考虑用 `git restore --staged` 取消暂存 |
+
+## 常见误解
+
+- **「Git 就是 GitHub」**：Git 是工具，GitHub 是托管网站。
+- **「无脑 `git add .` 很省事」**：可能把密钥、日志、构建产物一起提交。
+- **「不提交也能随便改」**：出问题时你没有回滚点。
+- **「已推送的历史也能随便 reset」**：会影响其他人，应该用 `revert`。
+- **「删除文件就等于删掉密钥」**：密钥一旦进入历史，必须立即更换。
+
+## 本课术语
+
+- [版本控制](/appendix/glossary-engineering#版本控制)
+- [仓库](/appendix/glossary-engineering#仓库)
+- [提交](/appendix/glossary-engineering#提交)
+- [分支](/appendix/glossary-engineering#分支)
+- [diff](/appendix/glossary-engineering#diff)
+- [回滚](/appendix/glossary-engineering#回滚)
 
 ## 延伸阅读
 
 - [Claude Code 实操](/guide/tools/claude-code)
 - [上下文管理](/guide/spec/context-management)
-- 练习：故意让 AI 引入一个错误改动，只用 Git 命令定位并回滚它，不重新生成代码。
+- [Git 官方书籍（中文）](https://git-scm.com/book/zh/v2)
 
 <MarkComplete />
